@@ -45,7 +45,7 @@ exports.createCall = async (req, res) => {
 exports.getAllCallsByAgent = async (req, res) => {
     try {
         const agentId = req.params.agentId;
-        const agentCallRecords = await Calls.find({agent: agentId}).populate('agent');
+        const agentCallRecords = await Calls.find({agent: agentId}).populate('agent', '-password');
         if(agentCallRecords.length === 0) {
             return res.status(404).json({ message: 'No calls found for this agent' });
         }
@@ -82,7 +82,7 @@ exports.getCallStats = async (req, res) => {
                 $gte: startDate,
                 $lte: endDate
             }
-        }).populate('agent');
+        }).populate('agent', '-password');
 
         const agentStats = {};
 
@@ -90,7 +90,11 @@ exports.getCallStats = async (req, res) => {
             const agentId = call.agent._id.toString();
             if(!agentStats[agentId]){
                 agentStats[agentId] = {
-                    agent: call.agent,
+                    agent: {
+                        _id: call.agent._id,
+                        name: call.agent.name,
+                        email: call.agent.email
+                    },
                     totalCalls: 1,
                     connectedCalls: call.status === 'connected' ? 1 : 0,
                     notConnectedCalls: call.status === 'not connected' ? 1 : 0,
