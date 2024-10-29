@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "a494ce75-9173-40c0-af4a-6c06f3b37366",
+		"name": "boni-agent-api",
+		"description": "### <u>API Overview</u>\n\nThe `boni-agent-api` is designed to manage agents and track their associated calls. The API has two main sections: `agent` and `calls`, each with CRUD and analytical endpoints to handle data operations.\n\n### <u><b>Main Testing Endpoint</b></u>\n\n**`GET /calls/stats/from`**\n\n- **Purpose**: Retrieves call records within a specified time range, showing details on whether each call was connected or not.\n    \n- **Query Parameters**:\n    \n    - `startTime` (required): The starting point of the time range (UNIX timestamp, 10 digits).\n        \n    - `endTime` (required): The ending point of the time range (UNIX timestamp, 10 digits).\n        \n    - `agentId` (optional): When provided, fetches statistics specifically for the agent with this ID.\n        \n\n<u><b>All Agent Endpoints</b></u>\n\n- **`GET /agent`** - Retrieve all agents.\n    \n- **`GET /agent/:id`** - Retrieve a specific agent by ID.\n    \n- **`POST /agent`** - Create a new agent.\n    \n- **`PUT /agent/:id`** - Update agent information by ID.\n    \n- **`DELETE /agent/:id`** - Delete an agent by ID.\n    \n\n<u><b>All Call Endpoints</b></u>\n\n- **`GET /calls`** - Retrieve all call records.\n    \n- **`GET /calls/:id`** - Retrieve a specific call by ID.\n    \n- **`POST /calls`** - Log a new call.\n    \n- **`GET /calls/agent/:agentId`** - Retrieve all calls associated with a specific agent.\n    \n- **`GET /calls/stats/from`** - Fetches call records for the given \"startTime to endTime\" timestamps in \"UNIX\" format (10 digits) along with connected / not connected details.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28036981"
+	},
+	"item": [
+		{
+			"name": "agent",
+			"item": [
+				{
+					"name": "getAllAgents",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/agent",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"agent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAgentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/agent/672120871a063fa6c037c823",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"agent",
+								"672120871a063fa6c037c823"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAgent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Agent3\",\r\n    \"email\":\"agent3@gmail.com\",\r\n    \"password\":\"Agent3Pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/agent",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"agent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAgent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Agent -1 Edited\",\r\n    \"email\":\"agent1@gmail.com\",\r\n    \"password\":\"Agent1Pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/agent/672120871a063fa6c037c823",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"agent",
+								"672120871a063fa6c037c823"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAgent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/agent/6720cdeba43ff10e71178c78",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"agent",
+								"6720cdeba43ff10e71178c78"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "calls",
+			"item": [
+				{
+					"name": "createCall",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agentId\":\"6721758e3235625804b2ec16\",\r\n    \"customerId\":\"Any_Customer_99\",\r\n    \"timestamp\":\"1710000000\",\r\n    \"status\":\"connected\"\r\n}\r\n\r\n// timestamp must be in UNIX format",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/calls/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"calls",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCalls",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/calls/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"calls",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCallById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/calls/672125da1a063fa6c037c835",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"calls",
+								"672125da1a063fa6c037c835"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCallsByAgent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/calls/agent/6721209b1a063fa6c037c827",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"calls",
+								"agent",
+								"6721209b1a063fa6c037c827"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCallStats_for_agent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/calls/stats/from?startTime=1600000000&endTime=1735000000&agentId=6721209b1a063fa6c037c827",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"calls",
+								"stats",
+								"from"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "1600000000"
+								},
+								{
+									"key": "endTime",
+									"value": "1735000000"
+								},
+								{
+									"key": "agentId",
+									"value": "6721209b1a063fa6c037c827"
+								}
+							]
+						},
+						"description": "This request fetches statistics for agent `6721209b1a063fa6c037c827` from the given start to end time."
+					},
+					"response": []
+				},
+				{
+					"name": "getCallStats_all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/calls/stats/from?startTime=1600000000&endTime=1735000000",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"calls",
+								"stats",
+								"from"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "1600000000"
+								},
+								{
+									"key": "endTime",
+									"value": "1735000000"
+								}
+							]
+						},
+						"description": "This request fetches call statistics across all agents within the specified time range."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "https://boni-agent-api.onrender.com",
+			"type": "string"
+		}
+	]
+}
