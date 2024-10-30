@@ -12,7 +12,7 @@ Query Parameters:
 - `agentId` (optional): When provided, fetches statistics specifically for the agent with this ID.
 
 # Some Example Requests
-GET: `http://localhost:3000/calls/stats/from?startTime=1600000000&endTime=1735000000`
+GET: `https://boni-agent-api.onrender.com/calls/stats/from?startTime=1600000000&endTime=1735000000`
 #### Example Response:
 ```json
 [
@@ -38,7 +38,7 @@ GET: `http://localhost:3000/calls/stats/from?startTime=1600000000&endTime=173500
     }
 ]
 ```
-GET: `http://localhost:3000/calls/stats/from?startTime=1600000000&endTime=1735000000&agentId=6721209b1a063fa6c037c827`
+GET: `https://boni-agent-api.onrender.com/calls/stats/from?startTime=1600000000&endTime=1735000000&agentId=6721209b1a063fa6c037c827`
 #### Example Response:
 ```json
 {
